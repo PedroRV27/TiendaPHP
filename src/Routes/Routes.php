@@ -2,8 +2,11 @@
 
 namespace Routes;
 
+
+use Controllers\CarritoController;
 use Controllers\ProductoController;
 use Controllers\CategoriaController;
+use Controllers\PedidoController;
 use Controllers\UsuarioController;
 
 use lib\Router;
@@ -18,6 +21,26 @@ class Routes
             return (new UsuarioController())->index();
         });
         
+        Router::add('GET', '/Carrito/ver', function (){
+            return (new CarritoController())->ver();
+        });
+
+        Router::add('GET', 'Carrito/addProducto/:id', function ($id){
+            return (new CarritoController())->addProducto($id);
+        });
+
+        Router::add('GET', 'Carrito/removeProducto/:id', function ($id){
+            return (new CarritoController())->removeProducto($id);
+        });
+
+        Router::add('GET', 'Carrito/deleteProducto/:id', function ($id){
+            return (new CarritoController())->deleteProducto($id);
+        });
+
+        Router::add('GET', '/Carrito/delete', function (){
+            return (new CarritoController())->delete();
+        });
+
         Router::add('GET', 'Categoria/editar/:id', function ($id){
             return (new CategoriaController())->editar($id);
         });
@@ -48,6 +71,22 @@ class Routes
 
         Router::add('GET', 'Categoria/ver/:id', function ($id){
             return (new CategoriaController())->sas($id);
+        });
+
+        Router::add('POST', '/Pedido/save', function (){
+            return (new PedidoController())->save();
+        });
+
+        Router::add('GET', '/Pedido/hacer', function (){
+            return (new PedidoController())->hacer();
+        });
+
+        Router::add('GET', '/Pedido/misPedidos', function (){
+            return (new PedidoController())->misPedidos();
+        });
+
+        Router::add('GET', 'Pedido/ver/:id', function ($id){
+            return (new PedidoController())->ver($id);
         });
 
         Router::add('GET', '/Producto/index', function (){
