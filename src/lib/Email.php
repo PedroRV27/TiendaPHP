@@ -27,7 +27,7 @@ class Email {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  // Usar TLS
         $mail->SMTPAuth = true;
         $mail->Username = 'pedrorovi27@gmail.com';
-        $mail->Password = 'vddl noiy vpqb ibnw';
+        $mail->Password = 'yeoc weeb kzvn fssr';
 
         // Quien envía este mensaje
         $mail->setFrom('pedrorovi27@gmail.com', 'Mi tiendita');
