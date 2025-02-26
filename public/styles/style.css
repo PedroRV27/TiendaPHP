@@ -1,0 +1,706 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
+#header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+#logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+/* Navegación principal */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    font-size: 16px;
+    color: #ecf0f1;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #34495e;
+    border-radius: 4px;
+}
+
+/* Menú de categorías */
+#menu_cat {
+    background-color: #34495e;
+    padding: 10px 20px;
+    
+}
+
+#menu_cat ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu_cat ul li {
+    margin: 0 15px;
+}
+
+#menu_cat ul li a {
+    color: #ecf0f1;
+    font-size: 14px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+#menu_cat ul li a:hover {
+    background-color: #2c3e50;
+    border-radius: 4px;
+}
+
+/*Registro*/
+/* Estilos generales para el formulario */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.form_content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para las etiquetas */
+.form label {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilos para los campos de entrada */
+.input_field {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.input_field:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Estilos para el botón de registro */
+.submit_registro {
+    padding: 12px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit_registro:hover {
+    background-color: #34495e;
+}
+
+/* Estilos para las alertas */
+.alert {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Estilos para el mensaje de error */
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+/*Fin de registro*/
+
+/*Login*/
+/* Estilos generales para el formulario de inicio de sesión */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.form_content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para las etiquetas */
+.form label {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilos para los campos de entrada */
+.input_field {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.input_field:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Estilos para el botón de inicio de sesión */
+.submit_login {
+    padding: 12px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit_login:hover {
+    background-color: #34495e;
+}
+
+/* Estilos para el mensaje de error */
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Estilos para el mensaje de bienvenida */
+.welcome_message {
+    text-align: center;
+    font-size: 20px;
+    color: #2c3e50;
+    margin-top: 20px;
+}
+/*Fin login*/
+
+/* Carrito */
+#header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#header ul li {
+    margin-left: 20px;
+}
+
+#header ul li a {
+    font-size: 16px;
+    color: #ecf0f1;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+#header ul li a:hover {
+    background-color: #34495e;
+    border-radius: 4px;
+}
+
+/* Estilos para el carrito */
+#header ul li a[href*="Carrito"] {
+    background-color: #e67e22;
+    padding: 5px 15px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+#header ul li a[href*="Carrito"]:hover {
+    background-color: #d35400;
+}
+
+/*Fin header*/
+
+/*Categorias*/
+/* Estilos generales para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+table th {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+table tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td img.imagen {
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Estilos para el botón "Comprar" */
+table td a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #e67e22;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+table td a:hover {
+    background-color: #d35400;
+}
+
+/* Estilos para el mensaje "No hay categorías" */
+h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 40px;
+}
+
+h1 a {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+h1 a:hover {
+    color: #d35400;
+}
+/* fin Categorias*/
+
+/* Estilos para el contenedor finalCarrito */
+.finalCarrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Estilos para el enlace "Borrar Carrito" */
+.finalCarrito a {
+    padding: 8px 12px;
+    background-color: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.finalCarrito a:hover {
+    background-color: #c0392b;
+}
+
+/* Estilos para el total */
+.finalCarrito h3 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 0;
+}
+
+/* Estilos para el botón "Hacer pedido" */
+.finalCarrito button {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.finalCarrito button:hover {
+    background-color: #27ae60;
+}
+/*Final estilos carrito*/
+
+
+/*Resumen carrito*/
+/* Estilos para el resumen del carrito */
+.info_carrito {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.info_carrito h3 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.info_carrito h3 b {
+    color: #e67e22;
+}
+
+.info_carrito hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 15px 0;
+}
+
+.info_carrito h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.info_carrito h2 b {
+    color: #27ae60;
+}
+
+/* Estilos para el formulario de dirección de envío */
+.form_content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form_content h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input_field {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.input_field:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+.submit {
+    padding: 12px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+    background-color: #34495e;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Estilos para el mensaje de error cuando el carrito está vacío */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+h2 a {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+h2 a:hover {
+    color: #d35400;
+}
+/*Fin resumen carrito*/
+
+/*Editar Categoria*/
+/* Estilos generales para el formulario de edición */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #34495e;
+}
+
+/* Estilos para el mensaje de error */
+p {
+    text-align: center;
+    font-size: 16px;
+    color: #e74c3c;
+    margin-top: 20px;
+}
+/*Fin editar Categoria*/
+
+/* Estilos para el botón "Crear producto" */
+a[href*="Producto/crear"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2c3e50; /* Color de fondo oscuro */
+    color: #fff; /* Texto blanco */
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+a[href*="Producto/crear"]:hover {
+    background-color: #34495e; /* Color de fondo más claro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+a[href*="Producto/crear"]:active {
+    transform: translateY(0); /* Restablecer la elevación al hacer clic */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/*Fin crear Producto*/
+/* Estilos para el botón "Crear Categoría" */
+.btn-crear {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-crear:hover {
+    background-color: #34495e;
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-crear:active {
+    transform: translateY(0); /* Restablecer la elevación al hacer clic */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/*Fin crear Categoria*/
+/* Estilos para el footer */
+.footer {
+    background-color: #2c3e50; /* Fondo oscuro para coincidir con el header */
+    color: #ecf0f1; /* Texto claro */
+    padding: 20px 0; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    font-size: 14px; /* Tamaño de fuente */
+    border-top: 1px solid #34495e; /* Borde superior sutil */
+    margin-top: 40px; /* Espaciado superior para separarlo del contenido */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil en la parte superior */
+}
+
+.footer p {
+    margin: 0; /* Eliminar el margen predeterminado del párrafo */
+}
+
+/* Efecto hover para el texto (opcional) */
+.footer p:hover {
+    color: #e67e22; /* Cambiar el color del texto al pasar el mouse */
+    transition: color 0.3s ease; /* Transición suave */
+}
