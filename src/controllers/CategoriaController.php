@@ -109,8 +109,6 @@ class CategoriaController {
 
     public function eliminar(int $id): void {
         Utils::isAdmin();
-
-
         $productoController = new ProductoController();
         $productoController->eliminarProductosPorCategoria($id);
 

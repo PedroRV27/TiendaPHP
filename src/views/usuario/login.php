@@ -12,6 +12,10 @@
             <p class="error"><?= $error ?? ""?></p>
             <br>
             <input type="submit" value="Iniciar Sesión" class="submit_login">
+            <div class="remember-me">
+                <input type="checkbox" name="remember_me" id="remember_me">
+                <label for="remember_me">Recuérdame</label>
+            </div>
         </form>
     </div>
 <?php else: ?>

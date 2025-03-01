@@ -87,6 +87,11 @@ class Usuario {
             $data["password"] ?? "",
             $data["rol"] ?? "");
     }
+    
+    // Método estático para crear una instancia vacía
+    public static function createEmpty(): Usuario {
+        return new self("", "", "", "", "", "");
+    }
 
     public function save(): bool {
         $sql = $this->bd->prepare("INSERT INTO usuarios (id, nombre, apellidos, email, password, rol) VALUES (:id, :nombre, :apellidos, :email, :password, :rol)");
@@ -149,6 +154,22 @@ class Usuario {
             $result = false;
         }
         return $result;
+    }
+
+    public function buscaId($id): object|false {
+        $sql = $this->bd->prepare("SELECT * FROM usuarios WHERE id = :id");
+        $sql->bindParam(":id", $id, \PDO::PARAM_INT);
+
+        try {
+            $sql->execute();
+            if ($sql->rowCount() == 1) {
+                return $sql->fetch(\PDO::FETCH_OBJ);
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
 }

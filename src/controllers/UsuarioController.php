@@ -49,19 +49,27 @@ class UsuarioController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST["data"]) {
                 $usuario = Usuario::fromArray($_POST["data"]);
-                // TODO validar usuario con sus metodos
                 $identity = $usuario->login();
+    
                 if ($identity && is_object($identity)) {
                     if (isset($_SESSION["errorIdentity"])) {
                         unset($_SESSION["errorIdentity"]);
                     }
                     $_SESSION["identity"] = $identity;
-
+    
                     if ($identity->rol == "admin") {
                         $_SESSION["admin"] = true;
                     }
+                    // Verificar si el checkbox Recordarme fue marcado
+                    if (isset($_POST['remember_me']) && $_POST['remember_me'] == 'on') {
+                        // Crear una cookie que expire en 7 días
+                        $cookie_name = "remember_me";
+                        $cookie_value = $identity->id; 
+                        $cookie_expire = time() + (7 * 24 * 60 * 60); // 7 días
+                        setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
+                    }
+    
                     header("Location:" . base_url);
-
                 } else {
                     $this->pages->render("usuario/login", ["error" => $identity]);
                 }
@@ -80,6 +88,10 @@ class UsuarioController {
         if (isset($_SESSION["carrito"])) {
             unset($_SESSION["carrito"]);
         }
+        if (isset($_COOKIE["remember_me"])) {
+            setcookie("remember_me", "", time() - 3600, "/");
+        }
+
         header("Location: ".base_url);
         // Utils::deleteSession('identity');
         // Utils::deleteSession('carrito');
