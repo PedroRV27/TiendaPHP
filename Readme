@@ -1,0 +1,184 @@
+Tienda Online en PHP
+
+📌 Descripción del Proyecto
+
+Este proyecto es una tienda en línea desarrollada en PHP que permite a los usuarios navegar, comprar productos y gestionar pedidos. Utiliza una estructura basada en el patrón MVC (Modelo-Vista-Controlador) para una mejor organización y mantenimiento del código.
+
+📖 Índice
+
+1.Estructura del Proyecto
+2.Explicación de los Ficheros
+
+
+TIENDAPHP/
+│── config/                  # Configuración del sistema
+│   ├── config.php           # Archivo de configuración general
+│
+│── database/                # Base de datos del proyecto
+│   ├── tienda.sql           # Archivo con la estructura de la base de datos
+│
+│── public/                  # Archivos públicos accesibles desde el navegador
+│   ├── images/              # Imágenes utilizadas en la tienda
+│   ├── styles/              # Hojas de estilo (CSS)
+│   ├── .htaccess            # Configuración de Apache
+│   ├── index.php            # Punto de entrada principal
+│
+│── src/                     # Código fuente del proyecto
+│   ├── controllers/         # Controladores que manejan la lógica del sistema
+│   │   ├── CarritoController.php   # Controlador del carrito de compras
+│   │   ├── CategoriaController.php # Controlador de categorías
+│   │   ├── ErrorController.php     # Controlador de errores
+│   │   ├── PedidoController.php    # Controlador de pedidos
+│   │   ├── ProductoController.php  # Controlador de productos
+│   │   ├── UsuarioController.php   # Controlador de usuarios
+│   │
+│   ├── lib/                 # Librerías auxiliares
+│   │   ├── BaseDatos.php    # Gestión de la base de datos
+│   │   ├── Email.php        # Funciones de envío de correos
+│   │   ├── Pages.php        # Manejo de páginas dinámicas
+│   │   ├── Router.php       # Sistema de enrutamiento
+│   │
+│   ├── models/              # Modelos que representan la base de datos
+│   │   ├── Carrito.php      # Modelo del carrito de compras
+│   │   ├── Categoria.php    # Modelo de categorías
+│   │   ├── Pedido.php       # Modelo de pedidos
+│   │   ├── Producto.php     # Modelo de productos
+│   │   ├── Usuario.php      # Modelo de usuarios
+│   │
+│   ├── Routes/              # Definición de rutas
+│   │   ├── Routes.php       # Archivo de configuración de rutas
+│   │
+│   ├── utils/               # Utilidades y funciones auxiliares
+│   │   ├── Utils.php        # Funciones comunes
+│   │
+│   ├── views/               # Vistas del proyecto
+│   │   ├── carrito/         # Vistas del carrito de compras
+│   │   ├── categoria/       # Vistas de categorías
+│   │   │   ├── crear.php    # Vista para crear una categoría
+│   │   │   ├── editar.php   # Vista para editar una categoría
+│   │   │   ├── eliminar.php # Vista para eliminar una categoría
+│   │   │   ├── index.php    # Vista principal de categorías
+│   │   │   ├── inicio.php   # Vista de inicio de categorías
+│   │   │   ├── ver.php      # Vista para ver detalles de una categoría
+│   │   ├── email/           # Vistas relacionadas con correos electrónicos
+│   │   │   ├── email.php    # Plantilla de correo
+│   │   ├── layout/          # Vistas compartidas como header y footer
+│   │   │   ├── footer.php   # Pie de página
+│   │   │   ├── header.php   # Cabecera del sitio
+│   │   ├── pedido/          # Vistas de pedidos
+│   │   │   ├── correcto.php # Confirmación de pedido exitoso
+│   │   │   ├── error.php    # Mensaje de error en pedidos
+│   │   │   ├── gestion.php  # Gestión de pedidos
+│   │   │   ├── hacer.php    # Formulario para hacer un pedido
+│   │   │   ├── mis_pedidos.php # Listado de pedidos del usuario
+│   │   │   ├── ver.php      # Vista de detalles de un pedido
+│   │   ├── producto/        # Vistas de productos
+│   │   │   ├── crear.php    # Vista para crear un producto
+│   │   │   ├── editar.php   # Vista para editar un producto
+│   │   │   ├── index.php    # Vista principal de productos
+│   │   ├── usuario/         # Vistas de usuario
+│   │   │   ├── login.php    # Vista de inicio de sesión
+│   │   │   ├── registro.php # Vista de registro de usuarios
+│
+│── vendor/                  # Dependencias de Composer
+│── .env                     # Variables de entorno
+│── .gitattributes            # Configuración de Git
+│── .gitignore                # Archivos ignorados por Git
+│── .htaccess                 # Configuración adicional de Apache
+│── autoloader.php            # Cargador automático de clases
+│── composer.json             # Archivo de configuración de Composer
+│── composer.lock             # Archivo de bloqueo de dependencias
+│── README.md                 # Documentación del proyecto
+
+
+📜 Explicación de los Ficheros
+
+📁 config/
+
+config.php: Define las configuraciones principales del proyecto, como la conexión a la base de datos, parámetros globales y configuraciones del servidor.
+
+📁 database/
+
+tienda.sql: Archivo SQL con la estructura de la base de datos, incluyendo tablas como usuarios, productos, pedidos y categorias etc...
+
+📁 public/
+
+images/: Carpeta para almacenar imágenes de productos y otros recursos visuales
+
+styles/: Carpeta que contiene las hojas de estilo CSS para la tienda.
+
+.htaccess: Configuración del servidor Apache para reescritura de URL y seguridad.
+
+index.php: Punto de entrada principal del sistema que carga nuestro init.php.
+
+📁 src/
+
+📂 controllers/
+
+Los controladores gestionan la lógica de la aplicación y sirven de intermediarios entre los modelos y las vistas.
+
+CarritoController.php: Maneja todas las acciones relacionadas con el carrito de compras, como agregar, eliminar y actualizar productos.
+
+CategoriaController.php: Controla la gestion de categorías, permitiendo su creación, edición, eliminación y visualización.
+
+PedidoController.php: Gestiona los pedidos de los usuarios, incluyendo la creación, actualización, seguimiento y cancelación de pedidos.
+
+ProductoController.php: Administra los productos disponibles en la tienda, permitiendo agregar, editar, eliminar y listar productos.
+
+UsuarioController.php: Controla las funciones de usuario, como el registro, inicio de sesión.
+
+📂 lib/
+
+Contiene librerías auxiliares que facilitan funcionalidades específicas del sistema.
+
+BaseDatos.php: Maneja la conexión y operaciones con la base de datos utilizando PDO.
+
+Email.php: Contiene funciones para el envío de correos electrónicos, como confirmación de registro o notificaciones de pedidos esta configurado para el uso de gmail.
+
+Pages.php: Controla la carga dinámica de páginas en la aplicación.
+
+Router.php: Gestiona el enrutamiento de las URL para dirigir las peticiones a los controladores correspondientes.
+
+📂 models/
+
+Define las clases que representan las entidades de la base de datos.
+
+Carrito.php: Modelo del carrito de compras, maneja la estructura de los productos añadidos y sus cantidades.
+
+Categoria.php: Modelo de categoría de productos, define atributos como nombre y descripción ademas realiza el crud para comunicarse con la base de datos.
+
+Pedido.php: Modelo de pedido, maneja los detalles de las compras realizadas por los usuarios.
+
+Producto.php: Modelo de producto, define atributos como nombre, precio, descripción e imagen ademas realiza el crud para comunicarse con la base de datos.
+
+Usuario.php: Modelo de usuario, maneja datos como nombre, correo electrónico, contraseña y roles realiza el crud para comunicarse con la base de datos.
+
+📂 Routes/
+
+Define las rutas principales de la aplicación.
+
+Routes.php: Contiene la configuración de rutas, mapeando las URL a los controladores y métodos correspondientes.
+
+📂 utils/
+
+Contiene funciones auxiliares reutilizables en varias partes de la aplicación.
+
+Utils.php: Archivo con funciones genéricas de ayuda, como formateo de datos y validaciones.
+
+📂 views/
+
+Contiene las vistas que muestran la interfaz de usuario.
+
+carrito/: Vistas relacionadas con el carrito de compras.
+
+categoria/: Vistas para la gestión y visualización de categorías.
+
+email/: Plantillas de correos electrónicos.
+
+layout/: Contiene partes comunes de la interfaz, como el header y footer.
+
+pedido/: Vistas relacionadas con la gestión de pedidos.
+
+producto/: Vistas para la gestión de productos.
+
+usuario/: Vistas de inicio de sesión y registro.
