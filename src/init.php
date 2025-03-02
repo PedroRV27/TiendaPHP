@@ -9,11 +9,11 @@ require_once '../config/config.php';
 $dotenv=\Dotenv\Dotenv::createImmutable(dirname(__DIR__,1));
 $dotenv->safeLoad();
 
-// Verificar la cookie recuerdame y restaurar la sesión si es necesario
+// Verificar la cookie recuerdame y restaurar la sesion si es necesario
 if (!isset($_SESSION["identity"]) && isset($_COOKIE["remember_me"])) {
     $user_id = $_COOKIE["remember_me"];
 
-    // Crear una instancia vacía de Usuario
+    // Crear una instancia vacia de Usuario
     $usuario = \Models\Usuario::createEmpty();
 
     // Buscar el usuario por su ID
