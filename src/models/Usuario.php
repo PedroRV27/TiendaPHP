@@ -137,6 +137,29 @@ class Usuario {
         return "El usuario no existe, <a href='".base_url."usuario/registro'>Reg&iacute;strese</a>";
     }
 
+    public function update(): bool {
+        $sql = $this->bd->prepare("UPDATE usuarios SET nombre = :nombre, apellidos = :apellidos, email = :email, password = :password WHERE id = :id");
+        
+        $nombre = $this->getNombre();
+        $apellidos = $this->getApellidos();
+        $email = $this->getEmail();
+        $password = $this->getPassword();
+        $id = $this->getId();
+        
+        $sql->bindParam(":nombre", $nombre, \PDO::PARAM_STR);
+        $sql->bindParam(":apellidos", $apellidos, \PDO::PARAM_STR);
+        $sql->bindParam(":email", $email, \PDO::PARAM_STR);
+        $sql->bindParam(":password", $password, \PDO::PARAM_STR);
+        $sql->bindParam(":id", $id, \PDO::PARAM_INT);
+        
+        try {
+            $sql->execute();
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     public function buscaMail($email): Object|false {
         $sql = $this->bd->prepare("SELECT * FROM usuarios WHERE email = :email");
 

@@ -106,6 +106,95 @@ class UsuarioController {
         $this->pages->render("usuario/login", ["errores" => $errores]);
     }
 
+    public function editar(): void {
+        if (!isset($_SESSION["identity"])) {
+            header("Location: " . base_url . "Usuario/login");
+            exit();
+        }
+        
+        $usuario = new Usuario("", "", "", "", "", "");
+        $userInfo = $usuario->buscaId($_SESSION["identity"]->id);
+        
+        $this->pages->render("usuario/editar", ["usuario" => $userInfo]);
+    }
+    
+    public function update(): void {
+        $errores = [];
+        
+        if (!isset($_SESSION["identity"])) {
+            header("Location: " . base_url . "Usuario/login");
+            exit();
+        }
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["data"])) {
+            $userData = $_POST["data"];
+            
+            //Validar
+            $nombreValido = Utils::validarNombre($userData["nombre"]);
+            if ($nombreValido !== true) $errores["nombre"] = $nombreValido;
+    
+
+            if (!empty($userData["apellidos"])) {
+                $apellidosValido = Utils::validarNombre($userData["apellidos"]); 
+                if ($apellidosValido !== true) $errores["apellidos"] = $apellidosValido;
+            }
+            
+            $emailValido = Utils::validarEmail($userData["email"]);
+            if ($emailValido !== true) $errores["email"] = $emailValido;
+            
+
+            if ($emailValido === true) {
+                $usuario = Usuario::createEmpty();
+                $existeEmail = $usuario->buscaMail($userData["email"]);
+                if ($existeEmail && $existeEmail->id != $_SESSION["identity"]->id) {
+                    $errores["email"] = "Este email ya está registrado por otro usuario";
+                }
+            }
+            
+            if (!empty($userData["password"]) && isset($userData["confirm_password"]) && $userData["password"] !== $userData["confirm_password"]) {
+                $errores["confirm_password"] = "Las contraseñas no coinciden";
+            }
+            
+            if (empty($errores)) {
+                $usuario = new Usuario(
+                    $_SESSION["identity"]->id,
+                    $userData["nombre"],
+                    $userData["apellidos"] ?? $_SESSION["identity"]->apellidos,
+                    $userData["email"],
+                    !empty($userData["password"]) ? password_hash($userData["password"], PASSWORD_BCRYPT, ["cost" => 4]) : $_SESSION["identity"]->password,
+                    $_SESSION["identity"]->rol
+                );
+                
+                $updated = $usuario->update();
+                
+                if ($updated) {
+                    $_SESSION["identity"] = $usuario->buscaId($_SESSION["identity"]->id);
+                    $_SESSION["update_success"] = "Tus datos han sido actualizados correctamente";
+                    header("Location: " . base_url);
+                    exit();
+                } else {
+                    $_SESSION["update_error"] = "Error al actualizar tus datos. Por favor, inténtalo de nuevo.";
+                }
+            }
+            
+            $userForView = (object)$userData;
+            $userForView->id = $_SESSION["identity"]->id;
+            if (!isset($userData["apellidos"])) {
+                $userForView->apellidos = $_SESSION["identity"]->apellidos;
+            }
+            
+            $this->pages->render("usuario/editar", [
+                "errores" => $errores, 
+                "usuario" => $userForView
+            ]);
+        } else {
+            $usuario = Usuario::createEmpty();
+            $userInfo = $usuario->buscaId($_SESSION["identity"]->id);
+            
+            $this->pages->render("usuario/editar", ["usuario" => $userInfo]);
+        }
+    }
+
     public function logout(): void {
         if (isset($_SESSION["identity"])) {
             unset($_SESSION["identity"]);

@@ -1,4 +1,3 @@
-
 <h1>Registrar un nuevo usuario</h1>
 
 <?php use Utils\Utils; ?>

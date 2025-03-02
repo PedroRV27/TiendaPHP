@@ -137,6 +137,14 @@ class Routes
             return (new UsuarioController())->logout();
         });
 
+        Router::add('GET', '/Usuario/editar', function (){
+            return (new UsuarioController())->editar();
+        });
+        
+        Router::add('POST', '/Usuario/update', function (){
+            return (new UsuarioController())->update();
+        });
+
 
         Router::dispatch();
     }

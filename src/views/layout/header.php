@@ -21,6 +21,7 @@ use Models\Categoria;
         <ul>
             <?php if (isset($_SESSION["identity"])): ?>
                 <li><a href="<?=base_url?>Usuario/logout/">Cerrar Sesi&oacute;n</a></li>
+                <li><a href="<?=base_url?>Usuario/editar">Editar Perfil</a></li>
                 <li><a href="<?=base_url?>Pedido/misPedidos">Mis Pedidos</a></li>
                 <?php if (isset($_SESSION["admin"])): ?>
                     <li><a href="<?=base_url?>Categoria/index"> Categor&iacute;as</a></li>
