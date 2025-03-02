@@ -79,46 +79,65 @@ class ProductoController {
 
     public function update(): void {
         Utils::isAdmin();
-        if ($_POST) {
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['data'])) {
             $id = $_POST['data']['id'];
-            $nombre = $_POST['data']['nombre'];
-            $categoria_id = $_POST['data']['categoria'];
-            $descripcion = $_POST['data']['descripcion'];
-            $precio = $_POST['data']['precio'];
-            $stock = $_POST['data']['stock'];
-            $imagen = null;
-
-            if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name'])) {
-                $imagen = $_FILES['imagen']['name'];
-                move_uploaded_file($_FILES['imagen']['tmp_name'], 'public/images/' . $imagen);
-            } else {
-                $productoExistente = new Producto();
-                $productoExistente->setId($id);
-                $productoExistente = $productoExistente->getOne();
-                $imagen = $productoExistente->imagen;
+            $productoExistente = new Producto();
+            $productoExistente->setId($id);
+            $productoExistente = $productoExistente->getOne();
+    
+            if (!$productoExistente) {
+                $_SESSION['producto'] = "El producto no existe.";
+                header("Location: " . base_url . "Producto/index");
+                exit();
             }
-
+            $valido = Producto::validarSave($_POST['data'], $_FILES['imagen'] ?? null);
+            
+            if ($valido !== true) {
+                $this->pages->render("producto/editar", [
+                    "producto" => $_POST['data'],
+                    "categorias" => Categoria::obtenerCategorias(),
+                    "error" => $valido
+                ]);
+                return;
+            }
+    
+            $imagen = $productoExistente->imagen;
+            if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name'])) {
+                if (!Utils::guardarImagen($_FILES['imagen'])) {
+                    $this->pages->render("producto/editar", [
+                        "producto" => $_POST['data'],
+                        "categorias" => Categoria::obtenerCategorias(),
+                        "error" => "Error al guardar la imagen."
+                    ]);
+                    return;
+                }
+                $imagen = $_FILES['imagen']['name'];
+            }
+    
+            // Actualizar el producto
             $producto = new Producto();
             $producto->setId($id);
-            $producto->setNombre($nombre);
-            $producto->setCategoriaId($categoria_id);
-            $producto->setDescripcion($descripcion);
-            $producto->setPrecio($precio);
-            $producto->setStock($stock);
+            $producto->setNombre($_POST['data']['nombre']);
+            $producto->setCategoriaId($_POST['data']['categoria']);
+            $producto->setDescripcion($_POST['data']['descripcion']);
+            $producto->setPrecio($_POST['data']['precio']);
+            $producto->setStock($_POST['data']['stock']);
             $producto->setImagen($imagen);
-
+    
             $update = $producto->update();
-
+    
             if ($update) {
                 $_SESSION['producto'] = "complete";
             } else {
                 $_SESSION['producto'] = "failed";
             }
-
+    
             header("Location: " . base_url . "Producto/index");
             exit();
         }
     }
+    
 
     public function eliminar(int $id): void {
         Utils::isAdmin();

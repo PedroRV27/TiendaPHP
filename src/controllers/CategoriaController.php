@@ -26,26 +26,33 @@ class CategoriaController {
         $this->pages->render("categoria/index", ["categorias" => $categorias]);
     }
 
-    public function save(): bool|null {
+    public function save(): void {
         Utils::isAdmin();
+        $error = "";
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST["nombre"])) {
-                $nombre = $_POST["nombre"];
-                $sql = $this->bd->prepare("INSERT INTO categorias VALUES (NULL, :nombre)");
+                $nombre = trim($_POST["nombre"]);
+                
+                $valido = Utils::validarNombre($nombre);
+                if ($valido !== true) {
+                    $error = $valido;
+                } else {
+                    $sql = $this->bd->prepare("INSERT INTO categorias (nombre) VALUES (:nombre)");
+                    $sql->bindParam(":nombre", $nombre, \PDO::PARAM_STR);
 
-                $sql->bindParam(":nombre", $nombre, \PDO::PARAM_STR);
-
-                try {
-                    $sql->execute();
-                    header("Location: ".base_url."Categoria/index");
-                    return true;
-                } catch (\PDOException $e) {
-                    $error = $e;
+                    try {
+                        $sql->execute();
+                        header("Location: " . base_url . "Categoria/index");
+                        exit();
+                    } catch (\PDOException $e) {
+                        $error = "Error al guardar la categoría.";
+                    }
                 }
             }
         }
-        $this->pages->render("categoria/crear");
-        return null;
+        
+        $this->pages->render("categoria/crear", ["error" => $error]);
     }
 
     public function crear(): void {
@@ -75,35 +82,37 @@ class CategoriaController {
         $this->pages->render("categoria/editar", ["categoria" => $categoria]);
     }
     
-    public function update(int $id): bool|null {
+    public function update(int $id): void {
         Utils::isAdmin();
-        
+        $error = "";
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST["nombre"])) {
-                $nombre = $_POST["nombre"];
-                $sql = $this->bd->prepare("UPDATE categorias SET nombre = :nombre WHERE id = :id");
-    
-                $sql->bindParam(":nombre", $nombre, \PDO::PARAM_STR);
-                $sql->bindParam(":id", $id, \PDO::PARAM_INT);
-    
-                try {
-                    $sql->execute();
+                $nombre = trim($_POST["nombre"]);
+                
+                $valido = Utils::validarNombre($nombre);
+                if ($valido !== true) {
+                    $error = $valido;
+                } else {
+                    $sql = $this->bd->prepare("UPDATE categorias SET nombre = :nombre WHERE id = :id");
+                    $sql->bindParam(":nombre", $nombre, \PDO::PARAM_STR);
+                    $sql->bindParam(":id", $id, \PDO::PARAM_INT);
 
-                    header("Location: ".base_url."Categoria/index");
-                    return true;
-                } catch (\PDOException $e) {
-                    $error = $e;
+                    try {
+                        $sql->execute();
+                        header("Location: " . base_url . "Categoria/index");
+                        exit();
+                    } catch (\PDOException $e) {
+                        $error = "Error al actualizar la categoría.";
+                    }
                 }
             }
         }
-        
 
         $categoria = new Categoria();
         $categoria->setId($id);
         $categoria = $categoria->getOne();
-        $this->pages->render("categoria/editar", ["categoria" => $categoria]);
-        
-        return null;
+        $this->pages->render("categoria/editar", ["categoria" => $categoria, "error" => $error]);
     }
     
 
